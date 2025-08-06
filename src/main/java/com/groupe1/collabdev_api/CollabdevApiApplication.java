@@ -10,3 +10,4 @@ public class CollabdevApiApplication {
         SpringApplication.run(CollabdevApiApplication.class, args);
     }
 }
+

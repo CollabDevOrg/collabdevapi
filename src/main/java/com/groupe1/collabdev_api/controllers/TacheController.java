@@ -111,4 +111,25 @@ public class TacheController {
     public boolean supprimerUneTache(@RequestParam int idTache, @RequestParam int idGestionnaire) {
         return tacheService.supprimerParId(idTache, idGestionnaire);
     }
+
+    @PutMapping("/{tacheId}/contributeur")
+    public ResponseEntity<?> affecterTache(
+            @PathVariable int tacheId,
+            @RequestParam int idProjet,
+            @RequestParam int idContributeur
+    ){
+        try {
+           return
+                   new ResponseEntity<>(
+                           tacheService.affecterContribteurToTache(idProjet, tacheId, idContributeur),
+                           HttpStatus.OK
+                   );
+        }catch (RuntimeException e)
+        {
+            return new ResponseEntity<>(
+                    "Projet ou tache ou contributeur non trouvé",
+                    HttpStatus.NOT_FOUND
+            );
+        }
+    }
 }

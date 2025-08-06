@@ -1,5 +1,6 @@
 package com.groupe1.collabdev_api.services;
 
+import com.groupe1.collabdev_api.dto.ContributeurDto;
 import com.groupe1.collabdev_api.dto.request_dto.RequestTache;
 import com.groupe1.collabdev_api.dto.response_dto.ResponseTache;
 import com.groupe1.collabdev_api.entities.*;
@@ -192,6 +193,14 @@ public class TacheService {
                         tache
                 )
         );
+        return true;
+    }
+    public Boolean affecterContribteurToTache(int idProjet, int idTache, int idContributeur){
+        Contributeur contributeur = contributeurService.chercherParId(idContributeur);
+        Tache tache = chercherParId(idProjet, idTache);
+        //affecter le contributeur à la tache
+        tache.setContributeur(contributeur);
+        tacheRepository.save(tache);
         return true;
     }
 }

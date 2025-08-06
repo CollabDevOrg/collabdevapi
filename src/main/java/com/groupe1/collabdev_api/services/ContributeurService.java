@@ -23,7 +23,8 @@ public class ContributeurService {
     private ContributeurRepository contributeurRepository;
 
     public Contributeur chercherParId(int id) {
-        return contributeurRepository.findById(id).orElse(null);
+        return contributeurRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Contributeur non trouvée avec l'id : " + id));
     }
 
     public List<Contributeur> chercherTous() {

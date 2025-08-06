@@ -45,7 +45,7 @@ public class Tache {
     @Enumerated(EnumType.STRING)
     private NiveauTache niveau;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_contributeur")
     private Contributeur contributeur;
 
